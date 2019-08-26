@@ -1,0 +1,40 @@
+query GetUser {
+  user(login:"nikartm") {
+    ... on User{
+      id
+      url
+      avatarUrl
+      bio
+      isEmployee
+    }
+  }
+}
+
+### Create Query using fragment
+#query GetUser {
+#  user(login:"nikartm") {
+#    ...UserFrag
+#  }
+#}
+#
+#fragment UserFrag on User {
+#  id
+#  url
+#  avatarUrl
+#  bio
+#  isEmployee
+#}
+
+# Query with params
+query GetRepository($owner: String!, $repoName:String!) {
+  repository(owner: $owner, name: $repoName) {
+    name
+    description
+    stargazers{
+      totalCount
+    }
+    forkCount
+    url
+  }
+
+}
