@@ -6,6 +6,12 @@ query GetUser {
       avatarUrl
       bio
       isEmployee
+      repositories{
+        totalCount
+      }
+      gists{
+        totalCount
+      }
     }
   }
 }
