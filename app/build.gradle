@@ -11,7 +11,12 @@ android {
         versionCode 1
         versionName "1.0"
         testInstrumentationRunner "androidx.test.runner.AndroidJUnitRunner"
-        buildConfigField "String", "TOKEN", "\""+getToken()+"\""
+        def token = getToken()
+        if (token == null || token.isEmpty()) {
+            throw new GradleException("Should add: token=<You_GitHub_token> to the local.properties")
+        } else {
+            buildConfigField "String", "TOKEN", "\"" + token + "\""
+        }
     }
     buildTypes {
         release {
