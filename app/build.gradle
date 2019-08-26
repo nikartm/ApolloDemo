@@ -11,6 +11,7 @@ android {
         versionCode 1
         versionName "1.0"
         testInstrumentationRunner "androidx.test.runner.AndroidJUnitRunner"
+        buildConfigField "String", "TOKEN", "\""+getToken()+"\""
     }
     buildTypes {
         release {
@@ -52,4 +53,10 @@ apollo {
     customTypeMapping = [
             "URI" : "java.net.URI"
     ]
+}
+
+def getToken() {
+    Properties properties = new Properties()
+    properties.load(project.rootProject.file('local.properties').newDataInputStream())
+    return properties.getProperty("token")
 }
